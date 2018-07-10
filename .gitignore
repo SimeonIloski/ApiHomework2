@@ -1,0 +1,11 @@
+/.idea
+/.settings
+/.project
+/.classpath
+**/*.iml
+*/.logcat.log
+*/.log
+**/target/**
+.idea/workspace.xml
+.idea/vcs.xml
+
