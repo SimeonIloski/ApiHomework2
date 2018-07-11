@@ -13,6 +13,7 @@
     <artifactId>common-dependencies</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <name>Common Dependencies</name>
 
     <dependencies>
         <dependency>
