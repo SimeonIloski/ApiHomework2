@@ -13,11 +13,11 @@
     <artifactId>endava-testing-utils</artifactId>
     <packaging>pom</packaging>
     <name>Testing Util</name>
+
     <modules>
         <module>dependencies-utils</module>
         <module>test-commons</module>
         <module>test-setup-utils</module>
     </modules>
-
 
 </project>
