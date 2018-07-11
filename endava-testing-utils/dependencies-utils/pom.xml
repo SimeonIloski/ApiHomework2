@@ -15,6 +15,7 @@
 
     <modules>
         <module>test-dependencies</module>
+        <module>common-dependencies</module>
     </modules>
 
 

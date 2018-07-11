@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.endava.utils</groupId>
     <artifactId>test-dependencies</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Test Dependencies</name>
 
@@ -18,6 +20,16 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.14.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
     </dependencies>
 
