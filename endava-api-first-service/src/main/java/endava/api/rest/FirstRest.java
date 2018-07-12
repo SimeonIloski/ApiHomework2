@@ -1,7 +1,34 @@
 package endava.api.rest;
 
 import endava.api.ApiDefinition;
+import endava.api.model.FirstModel;
+import endava.api.model.FirstReturnTypeModel;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 
-/*TODO initial empty class to be renamed and reused*/
+import java.io.IOException;
+
+import static api.util.CommonHelpers.executeCurrentMethodLog;
+
 public class FirstRest extends ApiDefinition {
+
+    private static final String URI_FOR_TEST_API = "/api";
+
+    public FirstReturnTypeModel firstGetRequest(){
+        executeCurrentMethodLog();
+        HttpEntity<?> httpEntity = getHttpEntity();
+        ResponseEntity<FirstReturnTypeModel> response;
+        try {
+            response = restTemplate.exchange(getBaseURI() + getApi() + URI_FOR_TEST_API, HttpMethod.GET, httpEntity, FirstReturnTypeModel.class);
+            return response.getBody();
+        } catch (HttpClientErrorException e) {
+            log.info(e.getMessage());
+        } catch (Exception e) {
+            log.info("Unhandled Exception! ");
+        }
+        return null;
+    }
+
 }
