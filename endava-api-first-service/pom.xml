@@ -16,9 +16,9 @@
     <name>First Service</name>
 
     <properties>
-        <test.app.server.host>endava.com</test.app.server.host>
+        <test.app.server.host>jsonplaceholder.typicode.com</test.app.server.host>
         <test.app.server.protocol>https</test.app.server.protocol>
-        <test.app.server.port>808</test.app.server.port>
+        <test.app.server.port></test.app.server.port>
         <test.app.server.base.url>/api</test.app.server.base.url>
     </properties>
 
