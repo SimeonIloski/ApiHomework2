@@ -38,4 +38,16 @@ public class FirstTest extends BaseTest {
         assertEquals(modelList.get(0).getBody(),"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto");
         log.info("Successfully asserted values!");
     }
+
+    @Test
+    public void secondTest(){
+        executeCurrentMethodLog();
+        ResponseEntity<FirstReturnTypeModel> firstReturnTypeModelResponseEntity = firstRest.getObjectById(39);
+        assertTrue(firstReturnTypeModelResponseEntity.getStatusCode().equals(HttpStatus.OK),"some kind of error. Not successful response! ");
+        log.info("Asserted response is with status: " +firstReturnTypeModelResponseEntity.getStatusCode() +"!!!");
+        FirstReturnTypeModel firstReturnTypeModel = firstReturnTypeModelResponseEntity.getBody();
+        assertFalse(firstReturnTypeModel.getId()==20,"Some things are not right!");
+        assertEquals(firstReturnTypeModel.getId(),39,"This is not the right ID");
+        log.info("Ales gut");
+    }
 }

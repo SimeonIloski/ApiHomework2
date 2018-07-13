@@ -20,6 +20,7 @@ public class FirstRest extends ApiDefinition {
     private static Logger log = LoggerFactory.getLogger(FirstRest.class);
 
     private static final String URI_FOR_TEST_API = "/posts";
+    private static final String URI_FOR_TEST_API_TWO = "/posts/{id}";
 
     public ResponseEntity<FirstReturnTypeModel[]> firstGetRequest(){
         executeCurrentMethodLog();
@@ -32,6 +33,21 @@ public class FirstRest extends ApiDefinition {
             log.info(e.getMessage());
         } catch (Exception e) {
             log.info("Unhandled Exception! ");
+        }
+        return null;
+    }
+
+    public ResponseEntity<FirstReturnTypeModel> getObjectById(int id){
+        executeCurrentMethodLog();
+        HttpEntity<?> httpEntity1 = getHttpEntity();
+        ResponseEntity<FirstReturnTypeModel>firstReturnTypeModelResponseEntity;
+        try{
+            firstReturnTypeModelResponseEntity = restTemplate.exchange(getBaseURI() + URI_FOR_TEST_API_TWO, HttpMethod.GET, httpEntity1,FirstReturnTypeModel.class,id);
+            return firstReturnTypeModelResponseEntity;
+        }catch (HttpClientErrorException e){
+            log.error(e.getMessage());
+        }catch (Exception e){
+            log.error(" any other kind of exc.");
         }
         return null;
     }
