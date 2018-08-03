@@ -29,8 +29,8 @@ public class UriCreator {
 
             String scheme = configuration.getString(CommonConstants.APP_SERVER_PROTOCOL_PROPERTY_NAME);
             String host = configuration.getString(CommonConstants.APP_SERVER_HOST_PROPERTY_NAME);
-            int port = configuration.getInt(CommonConstants.APP_SERVER_PORT_PROPERTY_NAME);
-            URI uri = new URIBuilder().setScheme(scheme).setHost(host).setPort(port).build();
+            /*int port = configuration.getInt(CommonConstants.APP_SERVER_PORT_PROPERTY_NAME);*/
+            URI uri = new URIBuilder().setScheme(scheme).setHost(host)/*.setPort(port)*/.build();
             apiUrl = uri.toString();
         } catch (URISyntaxException e) {
             log.debug("Could not get the properties from file %s, using the default value %s",
