@@ -20,6 +20,7 @@
         <test.app.server.protocol>https</test.app.server.protocol>
         <test.app.server.port></test.app.server.port>
         <test.app.server.base.url>/api</test.app.server.base.url>
+
     </properties>
 
     <dependencies>

@@ -3,6 +3,7 @@ package api.util;
 public final class CommonConstants {
     private CommonConstants() {
     }
+
     public static final String COMMON_PROPERTIES_FILE_NAME = "testng.properties";
     public static final String APP_SERVER_PROTOCOL_PROPERTY_NAME = "app.server.protocol";
     public static final String APP_SERVER_HOST_PROPERTY_NAME = "app.server.host";
