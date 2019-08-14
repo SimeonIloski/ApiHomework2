@@ -1,8 +1,10 @@
 package endava.api.rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import endava.api.ApiDefinition;
 import endava.api.model.FirstModel;
 import endava.api.model.FirstReturnTypeModel;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -50,6 +52,74 @@ public class FirstRest extends ApiDefinition {
             log.error(" any other kind of exc.");
         }
         return null;
+    }
+
+    public ResponseEntity<FirstReturnTypeModel> firstPostRequest(JSONObject object) {
+        executeCurrentMethodLog();
+        HttpEntity<?> httpEntity = prepareHttpEntity(object);
+        ResponseEntity<FirstReturnTypeModel> response;
+
+        try {
+            response = restTemplate.exchange(getBaseURI() + URI_FOR_TEST_API, HttpMethod.POST, httpEntity, FirstReturnTypeModel.class);
+            return response;
+        } catch (HttpClientErrorException e) {
+            log.info(e.getMessage());
+        } catch (Exception e) {
+            log.info("Unhandled Exception! ");
+        }
+        return null;
+    }
+
+    public ResponseEntity<FirstReturnTypeModel> firstPutRequest(JSONObject object,int id) {
+        executeCurrentMethodLog();
+        HttpEntity<?> httpEntity = prepareHttpEntity(object);
+        ResponseEntity<FirstReturnTypeModel> response;
+        try {
+            response = restTemplate.exchange(getBaseURI() + URI_FOR_TEST_API_TWO, HttpMethod.PUT, httpEntity, FirstReturnTypeModel.class,id);
+            return response;
+        } catch (HttpClientErrorException e) {
+            log.info(e.getMessage());
+        } catch (Exception e) {
+            log.info("Unhandled Exception! ");
+        }
+        return null;
+    }
+
+    public ResponseEntity<String> firstDeleteRequest(int id) {
+        executeCurrentMethodLog();
+        HttpEntity<?> httpEntity = getHttpEntity();
+        ResponseEntity<String> response;
+        try {
+            response = restTemplate.exchange(getBaseURI() + URI_FOR_TEST_API_TWO, HttpMethod.DELETE, httpEntity, String.class,id);
+            return response;
+        } catch (HttpClientErrorException e) {
+            log.info(e.getMessage());
+        } catch (Exception e) {
+            log.info("Unhandled Exception! ");
+        }
+        return null;
+    }
+
+
+    private HttpEntity<?> prepareHttpEntity(JSONObject object) {
+        FirstModel firstModel = parseJSONObjectToFirstModel(object);
+        log.info("Http Entity is : " + firstModel.toString());
+        httpRequestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new HttpEntity<FirstModel>(firstModel, httpRequestHeaders);
+    }
+
+
+    private FirstModel parseJSONObjectToFirstModel(JSONObject object) {
+        executeCurrentMethodLog();
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            FirstModel toReturn = objectMapper.readValue(object.toString(), FirstModel.class);
+            log.info("Builded model is : " + toReturn.toString());
+            return toReturn;
+        } catch (IOException ex) {
+            System.out.println("An error has occured" + ex);
+            return null;
+        }
     }
 
     protected HttpEntity<?> getHttpEntity() {
